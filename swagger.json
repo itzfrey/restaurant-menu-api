@@ -5,110 +5,73 @@
     "description": "API for managing restaurant menu items and categories",
     "version": "1.0.0"
   },
-  "host": "https://restaurant-menu-api-8pa6.onrender.com",
+  "host": "restaurant-menu-api-8pa6.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "Welcome page",
         "responses": {
-          "200": {
-            "description": "OK"
-          }
+          "200": { "description": "OK" }
         }
       }
     },
     "/menu-items/": {
       "get": {
-        "description": "",
+        "description": "Get all menu items",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "description": "",
+        "description": "Create a new menu item",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "category": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "ingredients": {
-                  "example": "any"
-                },
-                "calories": {
-                  "example": "any"
-                },
-                "preparationTime": {
-                  "example": "any"
-                }
+                "name": { "type": "string", "example": "Margherita Pizza" },
+                "category": { "type": "string", "example": "Pizza" },
+                "price": { "type": "number", "example": 12.99 },
+                "ingredients": { "type": "array", "items": { "type": "string" }, "example": ["tomato sauce", "mozzarella", "basil"] },
+                "calories": { "type": "number", "example": 800 },
+                "isVegetarian": { "type": "boolean", "example": true },
+                "preparationTime": { "type": "number", "example": 15 },
+                "available": { "type": "boolean", "example": true }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" }
         }
       }
     },
     "/menu-items/{id}": {
       "get": {
-        "description": "",
+        "description": "Get a menu item by ID",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update a menu item by ID",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "name": "body",
             "in": "body",
@@ -116,195 +79,115 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Margherita Pizza"
-                },
-                "category": {
-                  "type": "string",
-                  "example": "Pizza"
-                },
-                "price": {
-                  "type": "number",
-                  "example": 12.99
-                },
-                "ingredients": {
-                  "type": "array",
-                  "example": [
-                    "tomato sauce",
-                    "mozzarella",
-                    "basil"
-                  ],
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "calories": {
-                  "type": "number",
-                  "example": 800
-                },
-                "preparationTime": {
-                  "type": "number",
-                  "example": 15
-                },
-                "available": {
-                  "type": "boolean",
-                  "example": true
-                }
+                "name": { "type": "string", "example": "Margherita Pizza" },
+                "category": { "type": "string", "example": "Pizza" },
+                "price": { "type": "number", "example": 12.99 },
+                "ingredients": { "type": "array", "items": { "type": "string" }, "example": ["tomato sauce", "mozzarella", "basil"] },
+                "calories": { "type": "number", "example": 800 },
+                "isVegetarian": { "type": "boolean", "example": true },
+                "preparationTime": { "type": "number", "example": 15 },
+                "available": { "type": "boolean", "example": true }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a menu item by ID",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
     "/categories/": {
       "get": {
-        "description": "",
+        "description": "Get all categories",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "description": "",
+        "description": "Create a new category",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                }
+                "name": { "type": "string", "example": "Pizza" },
+                "description": { "type": "string", "example": "Italian flatbread dishes with various toppings" },
+                "isActive": { "type": "boolean", "example": true }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" }
         }
       }
     },
     "/categories/{id}": {
       "get": {
-        "description": "",
+        "description": "Get a category by ID",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update a category by ID",
         "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "name": "id",
-            "in": "path",
+            "name": "body",
+            "in": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "example": "Pizza" },
+                "description": { "type": "string", "example": "Italian flatbread dishes with various toppings" },
+                "isActive": { "type": "boolean", "example": true }
+              }
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a category by ID",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     }
