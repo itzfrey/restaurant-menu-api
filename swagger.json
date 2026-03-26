@@ -5,7 +5,7 @@
     "description": "API for managing restaurant menu items and categories",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://restaurant-menu-api-8pa6.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
