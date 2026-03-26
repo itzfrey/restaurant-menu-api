@@ -1,6 +1,5 @@
 const MenuItem = require('../models/menuItem');
 
-// GET all menu items
 const getAllMenuItems = async (req, res) => {
   try {
     const items = await MenuItem.find();
@@ -10,9 +9,11 @@ const getAllMenuItems = async (req, res) => {
   }
 };
 
-// GET single menu item by ID
 const getMenuItemById = async (req, res) => {
   try {
+    if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ message: 'Invalid ID format' });
+    }
     const item = await MenuItem.findById(req.params.id);
     if (!item) return res.status(404).json({ message: 'Menu item not found' });
     res.status(200).json(item);
@@ -21,9 +22,12 @@ const getMenuItemById = async (req, res) => {
   }
 };
 
-// POST create a menu item
 const createMenuItem = async (req, res) => {
   try {
+    const { name, category, price, ingredients, calories, preparationTime } = req.body;
+    if (!name || !category || !price || !ingredients || !calories || !preparationTime) {
+      return res.status(400).json({ message: 'Missing required fields: name, category, price, ingredients, calories, preparationTime' });
+    }
     const item = new MenuItem(req.body);
     const saved = await item.save();
     res.status(201).json(saved);
@@ -32,9 +36,14 @@ const createMenuItem = async (req, res) => {
   }
 };
 
-// PUT update a menu item
 const updateMenuItem = async (req, res) => {
   try {
+    if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ message: 'Invalid ID format' });
+    }
+    if (Object.keys(req.body).length === 0) {
+      return res.status(400).json({ message: 'No update data provided' });
+    }
     const updated = await MenuItem.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
@@ -46,9 +55,11 @@ const updateMenuItem = async (req, res) => {
   }
 };
 
-// DELETE a menu item
 const deleteMenuItem = async (req, res) => {
   try {
+    if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ message: 'Invalid ID format' });
+    }
     const deleted = await MenuItem.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({ message: 'Menu item not found' });
     res.status(200).json({ message: 'Menu item deleted successfully' });

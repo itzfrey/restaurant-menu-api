@@ -2,11 +2,23 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger-output.json');
+const swaggerDocument = require('./swagger.json');
 
 
 const app = express();
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>🍽️ Restaurant Menu API</h1>
+    <p>Welcome to the Restaurant Menu API. Use the routes below to get started:</p>
+    <ul>
+      <li><a href="/api-docs">/api-docs</a> - API Documentation</li>
+      <li><a href="/menu-items">/menu-items</a> - Menu Items</li>
+      <li><a href="/categories">/categories</a> - Categories</li>
+    </ul>
+  `);
+});
 
 // Routes
 const menuItemsRouter = require('./routes/menuItems');
