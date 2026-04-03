@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Menu API</title>
+  <link rel="stylesheet" href="/styles/home.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">🍽️</div>
+    <h1>Restaurant Menu API</h1>
+    <span class="status" id="status"></span>
+    <div class="links">
+      <a href="/api-docs" class="link-card">
+        <span class="link-icon">📄</span>
+        <div class="link-text">
+          <div class="link-title">API Documentation</div>
+          <div class="link-desc">View and test all available endpoints</div>
+        </div>
+      </a>
+      <a href="/menu-items" class="link-card">
+        <span class="link-icon">🍕</span>
+        <div class="link-text">
+          <div class="link-title">Menu Items</div>
+          <div class="link-desc">Browse all menu items in the database</div>
+        </div>
+      </a>
+      <a href="/categories" class="link-card">
+        <span class="link-icon">📂</span>
+        <div class="link-text">
+          <div class="link-title">Categories</div>
+          <div class="link-desc">Browse all menu categories</div>
+        </div>
+      </a>
+      <a href="/auth/github" class="link-card" id="auth-link">
+        <span class="link-icon">🔐</span>
+        <div class="link-text">
+          <div class="link-title" id="auth-title">Login with GitHub</div>
+          <div class="link-desc" id="auth-desc">Authenticate to access protected routes</div>
+        </div>
+      </a>
+    </div>
+    <div class="footer">Restaurant Menu API &copy; 2026</div>
+  </div>
+  <script src="/styles/home.js"></script>
+</body>
+</html>

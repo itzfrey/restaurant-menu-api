@@ -15,18 +15,24 @@ router.get('/github/callback',
 );
 
 // Logout route
-router.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
+router.get('/logout', (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    req.session.destroy((err) => {
+      if (err) return next(err);
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
+  });
 });
 
 // Get current user
 router.get('/current-user', (req, res) => {
-  if (req.session.user) {
+  if (req.isAuthenticated()) {
     res.status(200).json({
-      displayName: req.session.user.displayName,
-      username: req.session.user.username,
-      id: req.session.user.id
+      displayName: req.user.displayName,
+      username: req.user.username,
+      id: req.user.id
     });
   } else {
     res.status(401).json({ message: 'Not logged in' });

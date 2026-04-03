@@ -41,19 +41,16 @@ passport.deserializeUser((user, done) => {
 // Swagger docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// Serve static files
+app.use(express.static('public'));
+
 // Home route
 app.get('/', (req, res) => {
-  res.send(`
-    <h1>🍽️ Restaurant Menu API</h1>
-    <p>${req.session.user ? `Logged in as ${req.session.user.displayName}` : 'You are logged out'}</p>
-    <ul>
-      <li><a href="/api-docs">/api-docs</a> - API Documentation</li>
-      <li><a href="/menu-items">/menu-items</a> - Menu Items</li>
-      <li><a href="/categories">/categories</a> - Categories</li>
-      <li><a href="/auth/github">/auth/github</a> - Login with GitHub</li>
-      <li><a href="/auth/logout">/auth/logout</a> - Logout</li>
-    </ul>
-  `);
+  res.sendFile(__dirname + '/public/index.html');
+});
+// Home route
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 // Routes

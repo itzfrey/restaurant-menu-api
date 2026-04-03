@@ -1,0 +1,70 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #1a1a2e;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.container {
+  background: #16213e;
+  border-radius: 16px;
+  padding: 50px 40px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  text-align: center;
+}
+.emoji { font-size: 60px; margin-bottom: 16px; }
+h1 {
+  font-size: 2rem;
+  color: #e94560;
+  margin-bottom: 10px;
+}
+.status {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-bottom: 30px;
+}
+.status.logged-in {
+  background: #1b4332;
+  color: #52b788;
+  border: 1px solid #52b788;
+}
+.status.logged-out {
+  background: #3d1a1a;
+  color: #e63946;
+  border: 1px solid #e63946;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+.link-card {
+  background: #0f3460;
+  border-radius: 10px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: background 0.2s;
+  border: 1px solid #1a4a7a;
+}
+.link-card:hover { background: #1a4a7a; }
+.link-icon { font-size: 1.4rem; }
+.link-text { text-align: left; }
+.link-title { font-weight: 600; font-size: 1rem; }
+.link-desc { font-size: 0.78rem; color: #aaa; margin-top: 2px; }
+.footer {
+  margin-top: 30px;
+  font-size: 0.75rem;
+  color: #555;
+}
