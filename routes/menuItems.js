@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { isAuthenticated } = require('../middleware/authenticate');
 const {
   getAllMenuItems,
   getMenuItemById,
@@ -10,24 +11,8 @@ const {
 
 router.get('/', getAllMenuItems);
 router.get('/:id', getMenuItemById);
-router.post('/', createMenuItem);
-router.put(
-  '/:id',
-  /* #swagger.parameters['body'] = {
-    in: 'body',
-    required: true,
-    schema: {
-      name: 'Margherita Pizza',
-      category: 'Pizza',
-      price: 12.99,
-      ingredients: ['tomato sauce', 'mozzarella', 'basil'],
-      calories: 800,
-      preparationTime: 15,
-      available: true
-    }
-  } */
-  updateMenuItem
-);
-router.delete('/:id', deleteMenuItem);
+router.post('/', isAuthenticated, createMenuItem);
+router.put('/:id', isAuthenticated, updateMenuItem);
+router.delete('/:id', isAuthenticated, deleteMenuItem);
 
 module.exports = router;
