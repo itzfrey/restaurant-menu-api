@@ -42,7 +42,6 @@
                 "price": { "type": "number", "example": 12.99 },
                 "ingredients": { "type": "array", "items": { "type": "string" }, "example": ["tomato sauce", "mozzarella", "basil"] },
                 "calories": { "type": "number", "example": 800 },
-                "isVegetarian": { "type": "boolean", "example": true },
                 "preparationTime": { "type": "number", "example": 15 },
                 "available": { "type": "boolean", "example": true }
               }
